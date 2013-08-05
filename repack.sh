@@ -1,26 +1,26 @@
 #!/bin/bash
 #now=$(date +"%Y%m%d_%H%M")
-now=$(cat /home/xmister/htc/kernel/.version)
-cd /home/xmister/htc/build
+now=$(cat /home/poonchitim/kernel_build_environment/kernel/.version)
+cd /home/poonchitim/kernel_build_environment/build
 cp -f zImage* ../packing
 cd ../packing
-rm sense_boot.img
-rm aosp_boot.img
-mkbootimg --kernel zImage_sense --ramdisk sense.cpio.gz -o sense_boot.img
-mkbootimg --kernel zImage_aosp --ramdisk aosp.cpio.gz -o aosp_boot.img
-#Sense
-rm -rf /home/xmister/htc/release/system/lib
-rm /home/xmister/htc/release/*.img
-cp /home/xmister/htc/packing/sense_boot.img /home/xmister/htc/release
-cp -R /home/xmister/htc/build/sense/system/lib /home/xmister/htc/release/system/lib
-cd /home/xmister/htc/release/
-zip -r xm_kernel_$(echo $now)_sense.zip *
-mv *.zip /home/xmister/htc/update/
-#AOSP
-rm -rf /home/xmister/htc/release/system/lib
-rm /home/xmister/htc/release/*.img
-cp /home/xmister/htc/packing/aosp_boot.img /home/xmister/htc/release
-cp -R /home/xmister/htc/build/aosp/system/lib /home/xmister/htc/release/system/lib
-cd /home/xmister/htc/release/
-zip -r xm_kernel_$(echo $now)_aosp.zip *
-mv *.zip /home/xmister/htc/update/
+rm lgstock_boot.img
+rm cm_boot.img
+mkbootimg --kernel zImage_lgstock --ramdisk lgstock.cpio.gz -o lgstock_boot.img
+mkbootimg --kernel zImage_cm --ramdisk cm.cpio.gz -o cm_boot.img
+#LG Stock
+rm -rf /home/poonchitim/kernel_build_environment/release/system/lib
+rm /home/poonchitim/kernel_build_environment/release/*.img
+cp /home/poonchitim/kernel_build_environment/packing/lgstock_boot.img /home/poonchitim/kernel_build_environment/release
+cp -R /home/poonchitim/kernel_build_environment/build/lgstock/system/lib /home/poonchitim/kernel_build_environment/release/system/lib
+cd /home/poonchitim/kernel_build_environment/release/
+zip -r eoa_kernel_$(echo $now)_lgstock.zip *
+mv *.zip /home/poonchitim/kernel_build_environment/update/
+#CM
+rm -rf /home/poonchitim/kernel_build_environment/release/system/lib
+rm /home/poonchitim/kernel_build_environment/release/*.img
+cp /home/poonchitim/kernel_build_environment/packing/cm_boot.img /home/poonchitim/kernel_build_environment/release
+cp -R /home/poonchitim/kernel_build_environment/build/cm/system/lib /home/poonchitim/kernel_build_environment/release/system/lib
+cd /home/poonchitim/kernel_build_environment/release/
+zip -r eoa_kernel_$(echo $now)_cm.zip *
+mv *.zip /home/poonchitim/kernel_build_environment/update/
